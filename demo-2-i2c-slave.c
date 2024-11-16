@@ -179,6 +179,8 @@ int main()
     unsigned char new_cmd = 0;
     //
     OSCCONbits.IRCF = 0b1111; // FOSC 16 Mhz
+    TRISCbits.TRISC5 = 0; // Output for LED7 on Curiosity board
+    LATCbits.LATC5 = 0; // Initially off
     i2c_init();
     ei(); // The i2c_service routine is called via interrupt.
     // Put something in the send buffer so that the I2C master can ask for it.
@@ -204,12 +206,12 @@ int main()
             continue;
         }
         // Interpret the command bytes.
-        switch (cmd[1]) {
-            case 0x0: {
+        switch (cmd[0]) {
+            case 0x00: {
                 LED = 0;
                 break;
             }
-            case 0x1: {
+            case 0x01: {
                 LED = 1;
                 break;
             }
