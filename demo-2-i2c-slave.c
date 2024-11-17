@@ -62,7 +62,7 @@ static volatile unsigned char send_indx = 0;
 
 void i2c_init()
 {
-    // Configure PPS I2C_SCL=RB6, I2C_SDA=RB4 
+    // Configure PPS I2C_SCL=RC0, I2C_SDA=RC1
     TRISCbits.TRISC1 = 1;
     TRISCbits.TRISC0 = 1;
     ANSELCbits.ANSC1 = 0;
